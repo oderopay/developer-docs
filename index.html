@@ -1,0 +1,1179 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta
+            name="description"
+            content="Documentation for the Odero API"
+        >
+    <title>API Reference</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-b12a2749.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;php&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="php">php</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#installation" class="toc-h2 toc-link" data-title="Installation">Installation</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#card-operations" class="toc-h1 toc-link" data-title="Card Operations">Card Operations</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#store-card" class="toc-h2 toc-link" data-title="Store Card">Store Card</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-payment" class="toc-h2 toc-link" data-title="Create Payment">Create Payment</a>
+                  </li>
+                  <li>
+                    <a href="#get-payment" class="toc-h2 toc-link" data-title="Get Payment">Get Payment</a>
+                  </li>
+                  <li>
+                    <a href="#marketplace" class="toc-h2 toc-link" data-title="Marketplace">Marketplace</a>
+                  </li>
+                  <li>
+                    <a href="#pay-with-saved-card" class="toc-h2 toc-link" data-title="Pay With Saved Card">Pay With Saved Card</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#subscriptions" class="toc-h1 toc-link" data-title="Subscriptions">Subscriptions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-subscription" class="toc-h2 toc-link" data-title="Create Subscription">Create Subscription</a>
+                  </li>
+                  <li>
+                    <a href="#retry" class="toc-h2 toc-link" data-title="Retry">Retry</a>
+                  </li>
+                  <li>
+                    <a href="#cancel" class="toc-h2 toc-link" data-title="Cancel">Cancel</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://odero.ro'>Return to Odero Homepage </a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the OderoPay API! You can use our API to access Odero API endpoints, which can get information on various payments, cards, recurrings, deposits, refunds in our database.</p>
+
+<p>We have language bindings in Shell, Php, Python, and Nodejs! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h2 id='installation'>Installation</h2>
+<p>You can access our SDK&#39;s directly on our <a href="https://github.com/oderopay">Github</a> Page.</p>
+<h3 id='php'>PHP</h3>
+<p><a href="https://github.com/oderopay/odero-php">Odero PHP Sdk</a></p>
+
+<p><code>composer require oderopay/odero-php</code></p>
+
+<p>Minimum Requirements;</p>
+
+<ul>
+<li>PHP 7.2 or later</li>
+<li>curl</li>
+<li>json</li>
+<li>mbstring</li>
+</ul>
+<h2 id='authentication'>Authentication</h2>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="c1">//Authentication is already handled by SDK</span>
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\OderoConfig</span><span class="p">(</span><span class="s1">'My Store Name'</span><span class="p">,</span> <span class="s1">'{merchant-id}'</span><span class="p">,</span> <span class="s1">'{merchant-token}'</span><span class="p">,</span> <span class="err">\</span><span class="nc">Oderopay\OderoConfig</span><span class="o">::</span><span class="no">ENV_STG</span><span class="p">);</span>
+
+<span class="c1">//Just initialize the Odero Client with given config.</span>
+<span class="nv">$oderopay</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\OderoClient</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+</code></pre></div>
+<p>To be authenticated, you need to send <code>X-MERCHANT-SIGNATURE</code> value in header.</p>
+
+<p>The header X-MERCHANT-SIGNATURE is generated by each merchant when a new request is initialized to API Endpoints.</p>
+
+<p>Items used in header generation:</p>
+
+<ul>
+<li>Merchant ID;</li>
+<li>Payload (encoded as json);</li>
+<li>Merchant API Token.</li>
+</ul>
+
+<p>Used Algorithm: sha256</p>
+
+<p>How is the header generated?</p>
+
+<aside>
+MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-TOKEN)
+</aside>
+<h1 id='card-operations'>Card Operations</h1><h2 id='store-card'>Store Card</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$billingAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Address\BillingAddress</span><span class="p">();</span>
+<span class="nv">$billingAddress</span>
+    <span class="o">-&gt;</span><span class="nf">setAddress</span><span class="p">(</span><span class="s1">'185 Berry St #550, San Francisco, CA 94107, USA'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCity</span><span class="p">(</span><span class="s1">'San Francisco'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCountry</span><span class="p">(</span><span class="s1">'USA'</span><span class="p">);</span>
+
+<span class="nv">$deliveryAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Address\DeliveryAddress</span><span class="p">();</span>
+<span class="nv">$deliveryAddress</span>
+    <span class="o">-&gt;</span><span class="nf">setAddress</span><span class="p">(</span><span class="s1">'185 Berry St #550, San Francisco, CA 94107, USA'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCity</span><span class="p">(</span><span class="s1">'San Francisco'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCountry</span><span class="p">(</span><span class="s1">'USA'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setDeliveryType</span><span class="p">(</span><span class="s1">'Courier'</span><span class="p">);</span>
+
+<span class="nv">$customer</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Customer</span><span class="p">();</span>
+<span class="nv">$customer</span>
+    <span class="o">-&gt;</span><span class="nf">setEmail</span><span class="p">(</span><span class="s1">'customer@email.com'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setPhoneNumber</span><span class="p">(</span><span class="s1">'  +19159969739'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setDeliveryInformation</span><span class="p">(</span><span class="nv">$deliveryAddress</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setBillingInformation</span><span class="p">(</span><span class="nv">$billingAddress</span><span class="p">);</span>
+
+<span class="nv">$card</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Card\SaveCard</span><span class="p">();</span>
+
+<span class="nv">$card</span><span class="o">-&gt;</span><span class="nf">setCustomer</span><span class="p">(</span><span class="nv">$customer</span><span class="p">);</span>
+<span class="nv">$card</span><span class="o">-&gt;</span><span class="nf">setCurrency</span><span class="p">(</span><span class="s1">'RON'</span><span class="p">);</span>
+<span class="nv">$card</span><span class="o">-&gt;</span><span class="nf">setReturnUrl</span><span class="p">(</span><span class="s1">'https://my-store.com/'</span><span class="p">);</span>
+
+<span class="nv">$cardResponse</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">cards</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">(</span><span class="nv">$card</span><span class="p">);</span>  <span class="c1">//CardSaveResponse</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$cardResponse</span><span class="o">-&gt;</span><span class="nf">isSuccess</span><span class="p">()){</span>
+   <span class="k">return</span> <span class="nf">http_redirect</span><span class="p">(</span><span class="nv">$cardResponse</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="s1">'url'</span><span class="p">])</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nb">log</span><span class="p">(</span><span class="nv">$cardResponse</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns an object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint creates a card save request and returns the url of hosted card storage page if success.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /api/cards</code></p>
+<h3 id='body'>Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId*</td>
+<td>Your unique merchant ID.</td>
+</tr>
+<tr>
+<td>currency*</td>
+<td>Currency code (3 letters).</td>
+</tr>
+<tr>
+<td>returnUrl*</td>
+<td>Base64 encoded URL where users will be redirected at the end or where they will be redirected if they choose to cancel current action.</td>
+</tr>
+<tr>
+<td>customer.email*</td>
+<td>Customer email address&quot;.</td>
+</tr>
+<tr>
+<td>customer.phoneNumber*</td>
+<td>Customer phone number (should start with country phone number prefix).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.deliveryType*</td>
+<td>Delivery type (e.g.: &quot;Sameday&quot;).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.country*</td>
+<td>Alpha code of the country set for delivery - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.city*</td>
+<td>Where you will deliver requested products / services.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.address*</td>
+<td>Customer physical address set for delivery</td>
+</tr>
+<tr>
+<td>customer.billingInformation.country*</td>
+<td>Alpha code of the country set for billing - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.billingInformation.city*</td>
+<td>City set for billing</td>
+</tr>
+<tr>
+<td>customer.billingInformation.address*</td>
+<td>Customer physical address set for billing</td>
+</tr>
+</tbody></table>
+<h1 id='payments'>Payments</h1><h2 id='create-payment'>Create Payment</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$billingAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Address\BillingAddress</span><span class="p">();</span>
+<span class="nv">$billingAddress</span>
+    <span class="o">-&gt;</span><span class="nf">setAddress</span><span class="p">(</span><span class="s1">'185 Berry St #550, San Francisco, CA 94107, USA'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCity</span><span class="p">(</span><span class="s1">'San Francisco'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCountry</span><span class="p">(</span><span class="s1">'USA'</span><span class="p">);</span>
+
+<span class="nv">$deliveryAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Address\DeliveryAddress</span><span class="p">();</span>
+<span class="nv">$deliveryAddress</span>
+    <span class="o">-&gt;</span><span class="nf">setAddress</span><span class="p">(</span><span class="s1">'185 Berry St #550, San Francisco, CA 94107, USA'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCity</span><span class="p">(</span><span class="s1">'San Francisco'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCountry</span><span class="p">(</span><span class="s1">'USA'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setDeliveryType</span><span class="p">(</span><span class="s1">'Courier'</span><span class="p">);</span>
+
+<span class="nv">$customer</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Customer</span><span class="p">();</span>
+<span class="nv">$customer</span>
+    <span class="o">-&gt;</span><span class="nf">setEmail</span><span class="p">(</span><span class="s1">'customer@email.com'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setPhoneNumber</span><span class="p">(</span><span class="s1">'  +19159969739'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setDeliveryInformation</span><span class="p">(</span><span class="nv">$deliveryAddress</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setBillingInformation</span><span class="p">(</span><span class="nv">$billingAddress</span><span class="p">);</span>
+
+<span class="nv">$products</span> <span class="o">=</span> <span class="p">[];</span> 
+<span class="nv">$product1</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\BasketItem</span><span class="p">();</span>
+<span class="nv">$product1</span>
+    <span class="o">-&gt;</span><span class="nf">setExtId</span><span class="p">(</span><span class="s1">'123'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setImageUrl</span><span class="p">(</span><span class="s1">'https://site.com/image/product1.jpg'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setName</span><span class="p">(</span><span class="s1">'Product Name'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setPrice</span><span class="p">(</span><span class="mf">99.99</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setQuantity</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$product1</span><span class="p">;</span>
+
+<span class="nv">$product2</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\BasketItem</span><span class="p">();</span>
+<span class="nv">$product2</span>
+    <span class="o">-&gt;</span><span class="nf">setExtId</span><span class="p">(</span><span class="s1">'123'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setImageUrl</span><span class="p">(</span><span class="s1">'https://site.com/image/product1.jpg'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setName</span><span class="p">(</span><span class="s1">'Product Name'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setPrice</span><span class="p">(</span><span class="mf">99.99</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setQuantity</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$product2</span><span class="p">;</span>
+
+<span class="nv">$paymentRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Payment</span><span class="p">();</span>
+<span class="nv">$paymentRequest</span>
+    <span class="o">-&gt;</span><span class="nf">setAmount</span><span class="p">(</span><span class="mf">100.00</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCurrency</span><span class="p">(</span><span class="s1">'USD'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderId</span><span class="p">(</span><span class="s1">'external-random-id'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/sample-product.html'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setMerchantId</span><span class="p">(</span><span class="s1">'{merchant-id}'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCustomer</span><span class="p">(</span><span class="nv">$customer</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setProducts</span><span class="p">(</span><span class="nv">$products</span><span class="p">)</span>
+    <span class="p">;</span>
+
+<span class="nv">$payment</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">payments</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">(</span><span class="nv">$paymentRequest</span><span class="p">);</span> <span class="c1">//PaymentIntentResponse</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$payment</span><span class="o">-&gt;</span><span class="nf">isSuccess</span><span class="p">()){</span>
+   <span class="k">return</span> <span class="nf">http_redirect</span><span class="p">(</span><span class="nv">$payment</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="s1">'url'</span><span class="p">])</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nb">log</span><span class="p">(</span><span class="nv">$payment</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns an object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint creates a payment request and returns the url of hosted payment page if success.
+You are an ecommerce company and selling your own products.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /api/payment/one-time</code></p>
+<h3 id='body'>Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId*</td>
+<td>Your unique merchant ID.</td>
+</tr>
+<tr>
+<td>cardToken</td>
+<td>Stored card token.</td>
+</tr>
+<tr>
+<td>amount*</td>
+<td>Payment amount.</td>
+</tr>
+<tr>
+<td>currency*</td>
+<td>Currency code (3 letters).</td>
+</tr>
+<tr>
+<td>extOrderId*</td>
+<td>Your internal order ID.</td>
+</tr>
+<tr>
+<td>extOrderUrl*</td>
+<td>Base64 encoded order URL.</td>
+</tr>
+<tr>
+<td>returnUrl*</td>
+<td>Base64 encoded URL where users will be redirected at the end or where they will be redirected if they choose to cancel current action.</td>
+</tr>
+<tr>
+<td>saveCard</td>
+<td>Would you like to save credit card and receive a specific stored card token?</td>
+</tr>
+<tr>
+<td>recurring*</td>
+<td>boolean, default false.</td>
+</tr>
+<tr>
+<td>customer.email*</td>
+<td>Customer email address&quot;.</td>
+</tr>
+<tr>
+<td>customer.phoneNumber*</td>
+<td>Customer phone number (should start with country phone number prefix).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.deliveryType*</td>
+<td>Delivery type (e.g.: &quot;Sameday&quot;).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.country*</td>
+<td>Alpha code of the country set for delivery - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.city*</td>
+<td>Where you will deliver requested products / services.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.address*</td>
+<td>Customer physical address set for delivery</td>
+</tr>
+<tr>
+<td>customer.billingInformation.country*</td>
+<td>Alpha code of the country set for billing - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.billingInformation.city*</td>
+<td>City set for billing</td>
+</tr>
+<tr>
+<td>customer.billingInformation.address*</td>
+<td>Customer physical address set for billing</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+(*) required.
+</aside>
+<h2 id='get-payment'>Get Payment</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$payment</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">payments</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'payment-id'</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>To get a single payment object, you can call this endpoint.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /api/payments/{id}</code></p>
+<h2 id='marketplace'>Marketplace</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$customer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Customer</span><span class="p">();</span>
+<span class="mf">....</span> 
+
+<span class="nv">$product1</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\BasketItem</span><span class="p">();</span>
+<span class="nv">$product1</span>
+    <span class="o">-&gt;</span><span class="nf">setExtId</span><span class="p">(</span><span class="s1">'123'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setImageUrl</span><span class="p">(</span><span class="s1">'https://site.com/image/product1.jpg'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setName</span><span class="p">(</span><span class="s1">'Product Name'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setPrice</span><span class="p">(</span><span class="mf">99.99</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setQuantity</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$merchant1Products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$product1</span><span class="p">;</span>
+
+<span class="c1">//initialize first merchant</span>
+<span class="nv">$merchant1</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Merchant</span><span class="p">();</span>
+<span class="nv">$merchant1</span>
+    <span class="o">-&gt;</span><span class="nf">setName</span><span class="p">(</span><span class="s1">'Sub Merchant Name'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtId</span><span class="p">(</span><span class="s1">'uuid'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setProducts</span><span class="p">(</span><span class="nv">$merchant1Products</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setAmount</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCommission</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="nv">$product2</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\BasketItem</span><span class="p">();</span>
+<span class="nv">$product2</span>
+    <span class="o">-&gt;</span><span class="nf">setExtId</span><span class="p">(</span><span class="s1">'123'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setImageUrl</span><span class="p">(</span><span class="s1">'https://site.com/image/product2.jpg'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setName</span><span class="p">(</span><span class="s1">'Product Name'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setPrice</span><span class="p">(</span><span class="mf">99.99</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setQuantity</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nv">$merchant2Products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$product2</span><span class="p">;</span>
+
+<span class="c1">//initialize second merchant</span>
+<span class="nv">$merchant2</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Merchant</span><span class="p">();</span>
+<span class="nv">$merchant2</span>
+    <span class="o">-&gt;</span><span class="nf">setName</span><span class="p">(</span><span class="s1">'Second Sub Merchant'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtId</span><span class="p">(</span><span class="s1">'uuid'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setAmount</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCommission</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setProducts</span><span class="p">(</span><span class="nv">$merchant2Products</span><span class="p">)</span>
+
+<span class="nv">$merchants</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$merchant1</span><span class="p">;</span>
+<span class="nv">$merchants</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$merchant2</span><span class="p">;</span>
+
+<span class="nv">$paymentRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Payment</span><span class="p">();</span>
+<span class="nv">$paymentRequest</span>
+    <span class="o">-&gt;</span><span class="nf">setAmount</span><span class="p">(</span><span class="mf">100.00</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCurrency</span><span class="p">(</span><span class="s1">'USD'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderId</span><span class="p">(</span><span class="s1">'external-random-id'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/sample-product.html'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setReturnUrl</span><span class="p">(</span><span class="s1">'https://mystore.com'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setMerchantId</span><span class="p">(</span><span class="s1">'{merchant-id}'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCustomer</span><span class="p">(</span><span class="nv">$customer</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setMerchants</span><span class="p">(</span><span class="nv">$merchants</span><span class="p">)</span> <span class="c1">//add merchants data to payment</span>
+    <span class="p">;</span>
+
+<span class="nv">$payment</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">payments</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">(</span><span class="nv">$paymentRequest</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Lets assume you have multiple sub merchants. And your customer has multiple items from different submerchants in their basket.
+So that, you need to add each merchant with products to payment object</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /api/payments/one-time</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId*</td>
+<td>Your unique merchant ID.</td>
+</tr>
+<tr>
+<td>cardToken</td>
+<td>Stored card token.</td>
+</tr>
+<tr>
+<td>amount*</td>
+<td>Payment amount.</td>
+</tr>
+<tr>
+<td>currency*</td>
+<td>Currency code (3 letters).</td>
+</tr>
+<tr>
+<td>extOrderId*</td>
+<td>Your internal order ID.</td>
+</tr>
+<tr>
+<td>extOrderUrl*</td>
+<td>Base64 encoded order URL.</td>
+</tr>
+<tr>
+<td>returnUrl*</td>
+<td>Base64 encoded URL where users will be redirected at the end or where they will be redirected if they choose to cancel current action.</td>
+</tr>
+<tr>
+<td>saveCard</td>
+<td>Would you like to save credit card and receive a specific stored card token?</td>
+</tr>
+<tr>
+<td>submerchants[n].extId*</td>
+<td>Submerchant ID (from Odero PSP).</td>
+</tr>
+<tr>
+<td>submerchants[n].name*</td>
+<td>Submerchant Name (from Odero PSP).</td>
+</tr>
+<tr>
+<td>submerchants[n].amount*</td>
+<td>Amount to deposit</td>
+</tr>
+<tr>
+<td>submerchants[n].commission*</td>
+<td>Submerchant commission.</td>
+</tr>
+<tr>
+<td>submerchants[n].products[n].extId</td>
+<td>Product ID from your application. Products collection is not mandatory.</td>
+</tr>
+<tr>
+<td>submerchants[n].products[n].price</td>
+<td>Product price from your application.</td>
+</tr>
+<tr>
+<td>submerchants[n].products[n].quantity</td>
+<td>Product quantity.</td>
+</tr>
+<tr>
+<td>submerchants[n].products[n].total</td>
+<td>Product price * product quantity.</td>
+</tr>
+<tr>
+<td>submerchants[n].products[n].name</td>
+<td>Product name.</td>
+</tr>
+<tr>
+<td>submerchants[n].products[n].image</td>
+<td>Base64 encoded image URL.</td>
+</tr>
+<tr>
+<td>customer.email*</td>
+<td>Customer email address&quot;.</td>
+</tr>
+<tr>
+<td>customer.phoneNumber*</td>
+<td>Customer phone number (should start with country phone number prefix).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.deliveryType*</td>
+<td>Delivery type (e.g.: &quot;Sameday&quot;).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.country*</td>
+<td>Alpha code of the country set for delivery - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.city*</td>
+<td>Where you will deliver requested products / services.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.address*</td>
+<td>Customer physical address set for delivery</td>
+</tr>
+<tr>
+<td>customer.billingInformation.country*</td>
+<td>Alpha code of the country set for billing - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.billingInformation.city*</td>
+<td>City set for billing</td>
+</tr>
+<tr>
+<td>customer.billingInformation.address*</td>
+<td>Customer physical address set for billing</td>
+</tr>
+</tbody></table>
+
+<aside class="success">Be sure that each merchant's amount is calculated correctly.</aside>
+<h2 id='pay-with-saved-card'>Pay With Saved Card</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$customer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Customer</span><span class="p">();</span>
+<span class="mf">....</span> 
+<span class="nv">$merchants</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$merchants</span><span class="p">;</span>
+
+<span class="nv">$paymentRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Payment</span><span class="p">();</span>
+<span class="nv">$paymentRequest</span>
+    <span class="o">-&gt;</span><span class="nf">setAmount</span><span class="p">(</span><span class="mf">100.00</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCurrency</span><span class="p">(</span><span class="s1">'USD'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderId</span><span class="p">(</span><span class="s1">'external-random-id'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/sample-product.html'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setReturnUrl</span><span class="p">(</span><span class="s1">'https://mystore.com'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setMerchantId</span><span class="p">(</span><span class="s1">'{merchant-id}'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCustomer</span><span class="p">(</span><span class="nv">$customer</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setMerchants</span><span class="p">(</span><span class="nv">$merchants</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCardToken</span><span class="p">(</span><span class="s1">'savedCardToken'</span><span class="p">)</span> <span class="c1">// 👈 add saved card token to payment</span>
+    <span class="p">;</span>
+
+<span class="nv">$payment</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">payments</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">(</span><span class="nv">$paymentRequest</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>If you want to make the payment with a saved card, you need to add <code>cardToken</code> parameter to payment object.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /api/payments/one-time</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardToken</td>
+<td>Stored card token.</td>
+</tr>
+</tbody></table>
+<h1 id='subscriptions'>Subscriptions</h1><h2 id='create-subscription'>Create Subscription</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="c1">//subscription</span>
+<span class="nv">$startDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DateTime</span><span class="p">();</span>
+<span class="nv">$endDate</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$startDate</span><span class="p">;</span> <span class="nv">$endDate</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="nc">DateInterval</span><span class="o">::</span><span class="nf">createFromDateString</span><span class="p">(</span><span class="s1">'1 years'</span><span class="p">));</span>
+
+<span class="nv">$subscription</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Subscription\Subscription</span><span class="p">();</span>
+<span class="nv">$subscription</span><span class="o">-&gt;</span><span class="nf">setTimeForBillingUtc</span><span class="p">(</span><span class="s1">'15:00'</span><span class="p">);</span>
+<span class="nv">$subscription</span><span class="o">-&gt;</span><span class="nf">setStartDate</span><span class="p">(</span><span class="nv">$startDate</span><span class="o">-&gt;</span><span class="nf">format</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">));</span>
+<span class="nv">$subscription</span><span class="o">-&gt;</span><span class="nf">setEndDate</span><span class="p">(</span><span class="nv">$endDate</span><span class="o">-&gt;</span><span class="nf">format</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">));</span>
+<span class="nv">$subscription</span><span class="o">-&gt;</span><span class="nf">monthly</span><span class="p">();</span> <span class="c1">//set monthly, weekly or yearly</span>
+
+<span class="nv">$paymentRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\Payment</span><span class="p">();</span>
+<span class="nv">$paymentRequest</span>
+    <span class="o">-&gt;</span><span class="nf">setCurrency</span><span class="p">(</span><span class="s1">'USD'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderId</span><span class="p">(</span><span class="s1">'external-random-id'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExtOrderUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/orders/3244234'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setReturnUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/sample-product.html'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCustomer</span><span class="p">(</span><span class="nv">$customer</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setProducts</span><span class="p">(</span><span class="nv">$products</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setSubscription</span><span class="p">(</span><span class="nv">$subscription</span><span class="p">)</span> <span class="c1">// 👈 set the subscription</span>
+<span class="p">;</span>
+
+<span class="nv">$subscriptionRequest</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">subscriptions</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">(</span><span class="nv">$paymentRequest</span><span class="p">);</span> <span class="c1">//PaymentIntentResponse</span>
+
+<span class="nf">dump</span><span class="p">(</span><span class="nv">$payment</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="nv">$subscriptionRequest</span><span class="o">-&gt;</span><span class="nf">isSuccess</span><span class="p">()){</span>
+    <span class="c1">//redirect to $payment-&gt;data['url'];</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+   <span class="c1">//log the message $subscriptionRequest-&gt;message</span>
+<span class="p">}</span>
+
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns an object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint creates a payment request and returns the url of hosted payment page if success.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /api/payment/one-time</code></p>
+<h3 id='body'>Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId*</td>
+<td>Your unique merchant ID.</td>
+</tr>
+<tr>
+<td>cardToken</td>
+<td>Stored card token.</td>
+</tr>
+<tr>
+<td>amount*</td>
+<td>Payment amount.</td>
+</tr>
+<tr>
+<td>currency*</td>
+<td>Currency code (3 letters).</td>
+</tr>
+<tr>
+<td>extOrderId*</td>
+<td>Your internal order ID.</td>
+</tr>
+<tr>
+<td>extOrderUrl*</td>
+<td>Base64 encoded order URL.</td>
+</tr>
+<tr>
+<td>returnUrl*</td>
+<td>Base64 encoded URL where users will be redirected at the end or where they will be redirected if they choose to cancel current action.</td>
+</tr>
+<tr>
+<td>saveCard</td>
+<td>Would you like to save credit card and receive a specific stored card token?</td>
+</tr>
+<tr>
+<td>recurring*</td>
+<td>Setting a new recurring payment.</td>
+</tr>
+<tr>
+<td>recurringInformation.startDate</td>
+<td>When will start the recurring payment. Datetime ATOM format expected. Required if recurring is true.</td>
+</tr>
+<tr>
+<td>recurringInformation.endDate</td>
+<td>When will end the recurring payment. Datetime ATOM format expected. Required if recurring is true.</td>
+</tr>
+<tr>
+<td>recurringInformation.timeForBillingUtc</td>
+<td>Hour and minute when we will debit client account. Required if recurring is true.</td>
+</tr>
+<tr>
+<td>recurringInformation.interval</td>
+<td>How often you&#39;d like to debit client account. Available options: Weekly, Monthly and Yearly. Required if recurring is true.</td>
+</tr>
+<tr>
+<td>customer.email*</td>
+<td>Customer email address&quot;.</td>
+</tr>
+<tr>
+<td>customer.phoneNumber*</td>
+<td>Customer phone number (should start with country phone number prefix).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.deliveryType*</td>
+<td>Delivery type (e.g.: &quot;Sameday&quot;).</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.country*</td>
+<td>Alpha code of the country set for delivery - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.city*</td>
+<td>Where you will deliver requested products / services.</td>
+</tr>
+<tr>
+<td>customer.deliveryInformation.address*</td>
+<td>Customer physical address set for delivery</td>
+</tr>
+<tr>
+<td>customer.billingInformation.country*</td>
+<td>Alpha code of the country set for billing - 3 letters.</td>
+</tr>
+<tr>
+<td>customer.billingInformation.city*</td>
+<td>City set for billing</td>
+</tr>
+<tr>
+<td>customer.billingInformation.address*</td>
+<td>Customer physical address set for billing</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+(*) required.
+</aside>
+<h2 id='retry'>Retry</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$subscription</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">subscriptions</span><span class="o">-&gt;</span><span class="nf">retry</span><span class="p">(</span><span class="s1">'payment-id'</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>If a recurring payment fails, you might want to retry for transaction manually. To do so, you can call the retry endpoint.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /api/payments/{id}/recurring/retry</code></p>
+<h2 id='cancel'>Cancel</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$payment</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">subscriptions</span><span class="o">-&gt;</span><span class="nf">cancel</span><span class="p">(</span><span class="s1">'payment-id'</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>YOu might want to cancel the subscription. To do so, you can call cancel endpoint.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /api/payments/{id}/recurring/retry</code></p>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+You will face one of the error codes below if the request is not valid.
+</aside>
+
+<p>The Odero API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The value requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified value could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a value with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many values! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="php">php</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
