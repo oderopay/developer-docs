@@ -329,6 +329,9 @@
                   <li>
                     <a href="#store-card" class="toc-h2 toc-link" data-title="Store Card">Store Card</a>
                   </li>
+                  <li>
+                    <a href="#delete-card" class="toc-h2 toc-link" data-title="Delete Card">Delete Card</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -526,6 +529,23 @@ MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-
 <td>Customer physical address set for billing</td>
 </tr>
 </tbody></table>
+<h2 id='delete-card'>Delete Card</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$cardResponse</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">cards</span><span class="o">-&gt;</span><span class="nb">delete</span><span class="p">(</span><span class="s1">'cardToken'</span><span class="p">);</span>  <span class="c1">//CardSaveResponse</span>
+
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$cardResponse</span><span class="p">);</span>
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns an object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>This endpoint deletes a saved card.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>DELETE /api/cards/{cardToken}</code></p>
 <h1 id='payments'>Payments</h1><h2 id='create-payment'>Create Payment</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$billingAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Address\BillingAddress</span><span class="p">();</span>
 <span class="nv">$billingAddress</span>
     <span class="o">-&gt;</span><span class="nf">setAddress</span><span class="p">(</span><span class="s1">'185 Berry St #550, San Francisco, CA 94107, USA'</span><span class="p">)</span>
