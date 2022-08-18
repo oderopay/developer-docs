@@ -366,6 +366,17 @@
               </ul>
           </li>
           <li>
+            <a href="#open-source" class="toc-h1 toc-link" data-title="Open Source">Open Source</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#opencart" class="toc-h2 toc-link" data-title="Opencart">Opencart</a>
+                  </li>
+                  <li>
+                    <a href="#woocommerce" class="toc-h2 toc-link" data-title="Woocommerce">Woocommerce</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -1137,7 +1148,85 @@ So that, you need to add each merchant with products to payment object</p>
 <p>YOu might want to cancel the subscription. To do so, you can call cancel endpoint.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /api/payments/{id}/recurring/retry</code></p>
-<h1 id='errors'>Errors</h1>
+<h1 id='open-source'>Open Source</h1>
+<p>As Oderopay, we do support open source ecommerce and we created some extensions.</p>
+<h2 id='opencart'>Opencart</h2>
+<blockquote>
+<p>After uploading files to your server, run this command</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell"><code>composer require oderopay/odero-php
+</code></pre></div><h3 id='installation'>Installation</h3>
+<ul>
+<li>Download the latest version of extension  from <a href="https://github.com/oderopay/odero-opencart">Github</a>.</li>
+<li>Upload the all files in <code>upload</code> directory to your server.</li>
+<li>Login to your admin panel and go to Extensions</li>
+<li>List Payment extensions and install Oderopay from the list.</li>
+</ul>
+
+<p>After installation, run <code>composer require oderopay/odero-php</code> on your server where composer.json file is located.</p>
+
+<p>Your extension is ready for configuration</p>
+<h3 id='configuration'>Configuration</h3>
+<p>To access configuration list;</p>
+
+<ul>
+<li>Login to your admin panel and go to Extensions</li>
+<li>List Payment extensions and select Oderopay from the list.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Api Type</td>
+<td>Live or Testing (sandbox).</td>
+</tr>
+<tr>
+<td>Merchant ID</td>
+<td>You Odero MerchantID, you can access this from Odero Merchant Admin</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>You Odero Token, you can access this from Odero Merchant Admin</td>
+</tr>
+<tr>
+<td>Payment Value</td>
+<td>This value will be replaced on checkout page, you can use translations</td>
+</tr>
+<tr>
+<td>Order Status</td>
+<td>The order status will be set after successful transaction</td>
+</tr>
+<tr>
+<td>Order Refund Status</td>
+<td>The order status will be set after refund</td>
+</tr>
+<tr>
+<td>Order Reverse Status</td>
+<td>The order status will be set after reverse</td>
+</tr>
+<tr>
+<td>Cancel Order Status</td>
+<td>The order status will be set after cancel, or going back from payment page.</td>
+</tr>
+<tr>
+<td>Extension Status</td>
+<td>Set if the extension is enabled or disabled.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+If the extension is not enabled, payment options will not be activated on customer chekout page.
+</aside>
+<h3 id='webhooks'>Webhooks</h3>
+<p>After a successful installation, we generate url for webhooks. Copy the generated url from Opencart Oderopay extension page and paste to settings under Odero Merchant Admin</p>
+<h2 id='woocommerce'>Woocommerce</h2><div class="highlight"><pre class="highlight php tab-php"><code>
+</code></pre></div>
+<p>Documentation is waiting update.</p>
+<h3 id='installation-2'>Installation</h3><h1 id='errors'>Errors</h1>
 <aside class="notice">
 You will face one of the error codes below if the request is not valid.
 </aside>
