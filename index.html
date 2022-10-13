@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;php&quot;]">
+  <body class="index" data-languages="[&quot;php&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -306,6 +306,7 @@
       <img src="images/logo-cc102dc1.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -1174,7 +1175,33 @@ So that, you need to add each merchant with products to payment object</p>
 <p>YOu might want to cancel the subscription. To do so, you can call cancel endpoint.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /api/payments/{id}/recurring/retry</code></p>
-<h1 id='webhooks'>Webhooks</h1>
+<h1 id='webhooks'>Webhooks</h1><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$payload</span> <span class="o">=</span> <span class="o">@</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span> <span class="c1">// or $_REQUEST</span>
+<span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$payload</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="k">switch</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nv">$message</span> <span class="k">instanceof</span> <span class="err">\</span><span class="nc">Oderopay\Model\Webhook\Payment</span><span class="o">:</span>        
+        <span class="cd">/** @var  \Oderopay\Model\Webhook\Payment $message */</span>
+        <span class="nv">$paymentId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getPaymentId</span><span class="p">();</span>
+
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nv">$message</span> <span class="k">instanceof</span> <span class="err">\</span><span class="nc">Oderopay\Model\Webhook\Refund</span><span class="o">:</span>
+        <span class="cd">/** @var  Refund $message */</span>
+        <span class="nv">$operationId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getOperationId</span><span class="p">();</span>
+
+        <span class="c1">// Then update your data</span>
+
+    <span class="k">case</span> <span class="nv">$message</span> <span class="k">instanceof</span> <span class="err">\</span><span class="nc">Oderopay\Model\Webhook\StoredCard</span><span class="o">:</span>
+        <span class="cd">/** @var  \Oderopay\Model\Webhook\StoredCard $message */</span>
+        <span class="nv">$cardToken</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getCardToken</span><span class="p">();</span>
+
+
+        <span class="c1">// Then update your data</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="c1">// ... handle other event types</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="k">echo</span> <span class="s1">'Received unknown webhook '</span> <span class="mf">.</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getStatus</span><span class="p">();</span> <span class="c1">//Should give ERROR</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Odero uses webhooks (callback) to notify your application when an event happens in your account. Webhooks are particularly useful for asynchronous events like when a customer’s bank confirms a payment, a customer disputes a charge, a recurring payment succeeds, or when collecting subscription payments.</p>
 
 <p>A webhook enables Odero to push real-time notifications to your app. Odero uses HTTPS to send these notifications to your app as a JSON payload. You can then use these notifications to execute actions in your backend systems.</p>
@@ -1187,21 +1214,30 @@ So that, you need to add each merchant with products to payment object</p>
 <code>stored_card</code> or <code>remove_stored_card</code>.</p>
 <h2 id='payment'>Payment</h2>
 <p>You will receive a payment message after handshake between customer and bank. It could be successful transaction or not. </p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"payment"</span><span class="p">,</span>
-  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a356-55ea-67bc-b39f-83aa9247ea19"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Payment successful."</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"depositMade"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"cardToken"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"lastFourDigits"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"expirationMonth"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"expirationYear"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"7cbe2ee3-4324-4c0e-b2f6-4fe2920a77de"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="cd">/** @var  \Oderopay\Model\Webhook\Payment $message */</span>
+<span class="nv">$isDepositMade</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">isDepositMade</span><span class="p">();</span>
+<span class="nv">$operationId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getOperationId</span><span class="p">();</span>
+<span class="nv">$cardToken</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getCardToken</span><span class="p">();</span>
+<span class="nv">$cardExpirationMonth</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getExpirationMonth</span><span class="p">();</span>
+<span class="nv">$cardExpirationYear</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getExpirationYear</span><span class="p">();</span>
+<span class="nv">$cardLastFourDigits</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getLastFourDigits</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payment"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4a356-55ea-67bc-b39f-83aa9247ea19"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment successful."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"depositMade"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cardToken"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastFourDigits"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"expirationMonth"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"expirationYear"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7cbe2ee3-4324-4c0e-b2f6-4fe2920a77de"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1251,18 +1287,24 @@ So that, you need to add each merchant with products to payment object</p>
 </tbody></table>
 <h2 id='deposit'>Deposit</h2>
 <p>You will receive deposit message when you manually deposit a payment.</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"deposit"</span><span class="p">,</span>
-  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Deposit successful."</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span>
-    <span class="s2">"paymentOperationId"</span><span class="o">:</span> <span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span>
-    <span class="s2">"amount"</span><span class="o">:</span> <span class="s2">"50.88"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="cd">/** @var  \Oderopay\Model\Webhook\Deposit $message */</span>
+<span class="nv">$isDepositMade</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">isDepositMade</span><span class="p">();</span>
+<span class="nv">$operationId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getOperationId</span><span class="p">();</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getPaymentId</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deposit"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit successful."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"paymentOperationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.88"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1300,18 +1342,24 @@ So that, you need to add each merchant with products to payment object</p>
 </tbody></table>
 <h2 id='reverse'>Reverse</h2>
 <p>If the payment is not deposited, you can reverse the payment. </p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"reverse"</span><span class="p">,</span>
-  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Reverse successful."</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span>
-    <span class="s2">"paymentOperationId"</span><span class="o">:</span> <span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span>
-    <span class="s2">"amount"</span><span class="o">:</span> <span class="s2">"50.88"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="cd">/** @var  \Oderopay\Model\Webhook\Reverse $message */</span>
+<span class="nv">$isDepositMade</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">isDepositMade</span><span class="p">();</span>
+<span class="nv">$operationId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getOperationId</span><span class="p">();</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getPaymentId</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reverse"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reverse successful."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"paymentOperationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.88"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1349,18 +1397,24 @@ So that, you need to add each merchant with products to payment object</p>
 </tbody></table>
 <h2 id='refund'>Refund</h2>
 <p>If the payment is deposited, you can refund the payment.</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"refund"</span><span class="p">,</span>
-  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Refund successful."</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span>
-    <span class="s2">"paymentOperationId"</span><span class="o">:</span> <span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span>
-    <span class="s2">"amount"</span><span class="o">:</span> <span class="s2">"50.88"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="cd">/** @var  \Oderopay\Model\Webhook\Refund $message */</span>
+<span class="nv">$isDepositMade</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">isDepositMade</span><span class="p">();</span>
+<span class="nv">$operationId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getOperationId</span><span class="p">();</span>
+<span class="nv">$paymentId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getPaymentId</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"refund"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refund successful."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"paymentOperationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.88"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1398,19 +1452,27 @@ So that, you need to add each merchant with products to payment object</p>
 </tbody></table>
 <h2 id='stored-card'>Stored Card</h2>
 <p>If you use stored card feature, you will receive the message as below</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"stored_card"</span><span class="p">,</span>
-  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4ac06-eb95-6a6a-89fb-9b562db4a5db"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Card saved successful."</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"cardToken"</span><span class="o">:</span> <span class="s2">"sample token"</span><span class="p">,</span>
-    <span class="s2">"lastFourDigits"</span><span class="o">:</span> <span class="s2">"7499"</span><span class="p">,</span>
-    <span class="s2">"expirationMonth"</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s2">"expirationYear"</span><span class="o">:</span> <span class="mi">2023</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="cd">/** @var  \Oderopay\Model\Webhook\StoredCard $message */</span>
+<span class="nv">$operationId</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getOperationId</span><span class="p">();</span>
+<span class="nv">$cardToken</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getCardToken</span><span class="p">();</span>
+<span class="nv">$cardExpirationMonth</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getExpirationMonth</span><span class="p">();</span>
+<span class="nv">$cardExpirationYear</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getExpirationYear</span><span class="p">();</span>
+<span class="nv">$cardLastFourDigits</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getLastFourDigits</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stored_card"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4ac06-eb95-6a6a-89fb-9b562db4a5db"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card saved successful."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"cardToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample token"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lastFourDigits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7499"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"expirationMonth"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"expirationYear"</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1452,16 +1514,20 @@ So that, you need to add each merchant with products to payment object</p>
 </tbody></table>
 <h2 id='remove-card'>Remove Card</h2>
 <p>If you want to remove stored card, you will receive the message below</p>
-<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
-  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"remove_stored_card"</span><span class="p">,</span>
-  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4ade7-c4a0-6d00-a09b-ed7e63f1aa16"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
-  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Remove card successful."</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"storedCardToken"</span><span class="o">:</span> <span class="s2">"7fbe06bc344424724e79703d39382dcfb542bb83217e11c2a1f465ce07268983"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="cd">/** @var  \Oderopay\Model\Webhook\StoredCard $message */</span>
+<span class="nv">$cardToken</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="nf">getCardToken</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remove_stored_card"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ed4ade7-c4a0-6d00-a09b-ed7e63f1aa16"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Remove card successful."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"storedCardToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7fbe06bc344424724e79703d39382dcfb542bb83217e11c2a1f465ce07268983"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1736,6 +1802,7 @@ You will face one of the error codes below if the request is not valid.
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
