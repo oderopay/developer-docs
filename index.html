@@ -366,6 +366,29 @@
               </ul>
           </li>
           <li>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payment" class="toc-h2 toc-link" data-title="Payment">Payment</a>
+                  </li>
+                  <li>
+                    <a href="#deposit" class="toc-h2 toc-link" data-title="Deposit">Deposit</a>
+                  </li>
+                  <li>
+                    <a href="#reverse" class="toc-h2 toc-link" data-title="Reverse">Reverse</a>
+                  </li>
+                  <li>
+                    <a href="#refund" class="toc-h2 toc-link" data-title="Refund">Refund</a>
+                  </li>
+                  <li>
+                    <a href="#stored-card" class="toc-h2 toc-link" data-title="Stored Card">Stored Card</a>
+                  </li>
+                  <li>
+                    <a href="#status-codes" class="toc-h2 toc-link" data-title="Status Codes">Status Codes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#open-source" class="toc-h1 toc-link" data-title="Open Source">Open Source</a>
               <ul class="toc-list-h2">
                   <li>
@@ -473,7 +496,7 @@ MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-
 <p>The above command returns an object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
@@ -549,7 +572,7 @@ MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-
 <p>The above command returns an object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -622,7 +645,7 @@ MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-
 <p>The above command returns an object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
@@ -724,7 +747,7 @@ You are an ecommerce company and selling your own products.</p>
 <p>The above command returns object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
@@ -796,7 +819,7 @@ You are an ecommerce company and selling your own products.</p>
 <p>The above command returns object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
@@ -949,7 +972,7 @@ So that, you need to add each merchant with products to payment object</p>
 <p>The above command returns object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
@@ -1008,7 +1031,7 @@ So that, you need to add each merchant with products to payment object</p>
 <p>The above command returns an object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
@@ -1137,7 +1160,7 @@ So that, you need to add each merchant with products to payment object</p>
 <p>The above command returns object like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
@@ -1148,6 +1171,396 @@ So that, you need to add each merchant with products to payment object</p>
 <p>YOu might want to cancel the subscription. To do so, you can call cancel endpoint.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /api/payments/{id}/recurring/retry</code></p>
+<h1 id='webhooks'>Webhooks</h1>
+<p>Odero uses webhooks (callback) to notify your application when an event happens in your account. Webhooks are particularly useful for asynchronous events like when a customer’s bank confirms a payment, a customer disputes a charge, a recurring payment succeeds, or when collecting subscription payments.</p>
+
+<p>A webhook enables Odero to push real-time notifications to your app. Stripe uses HTTPS to send these notifications to your app as a JSON payload. You can then use these notifications to execute actions in your backend systems.</p>
+<h4 id='how-to-create-a-webhook-endpoint'>How to create a webhook endpoint</h4>
+<p>Creating a webhook endpoint is no different from creating any other page on your website. It’s an HTTP or HTTPS endpoint on your server with a URL. If you’re still developing your endpoint on your local machine, it can be HTTP. After it’s publicly accessible, it must be HTTPS. You can use one endpoint to handle several different event types at once, or set up individual endpoints for specific events.</p>
+
+<p>Then update your webhook (callback) url in merchant admin panel. Odero will send notifications to that url. </p>
+<h4 id='webhook-types'>Webhook types</h4>
+<p>webhook types could be <code>payment</code>,<code>deposit</code>,<code>refund</code>,<code>reverse</code>,
+<code>stored_card</code> or <code>remove_stored_card</code>.</p>
+<h2 id='payment'>Payment</h2>
+<p>You will receive a payment message after handshake between customer and bank. It could be successful transaction or not. </p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
+  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"payment"</span><span class="p">,</span>
+  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a356-55ea-67bc-b39f-83aa9247ea19"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Payment successful."</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"depositMade"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"cardToken"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"lastFourDigits"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"expirationMonth"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"expirationYear"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"7cbe2ee3-4324-4c0e-b2f6-4fe2920a77de"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>payment</td>
+</tr>
+<tr>
+<td>operationId</td>
+<td>Each payment operation id is unique. you can use this value on admin panel.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Detailed message of operation</td>
+</tr>
+<tr>
+<td>data.depositMade</td>
+<td>(bool) If false, you need to deposit manually. See marketplace documentation.</td>
+</tr>
+<tr>
+<td>data.cardToken</td>
+<td>If customer checked the save card option, you will receive the card token to use in future.</td>
+</tr>
+<tr>
+<td>data.lastFourDigits</td>
+<td>If customer checked the save card option, card&#39;s last for digits</td>
+</tr>
+<tr>
+<td>data.expirationMonth</td>
+<td>If customer checked the save card option, card&#39;s expire month</td>
+</tr>
+<tr>
+<td>data.expirationYear</td>
+<td>If customer checked the save card option, card&#39;s expire year</td>
+</tr>
+<tr>
+<td>data.paymentId</td>
+<td>Unique payment ID</td>
+</tr>
+</tbody></table>
+<h2 id='deposit'>Deposit</h2>
+<p>You will receive deposit message when you manually deposit a payment.</p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
+  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"deposit"</span><span class="p">,</span>
+  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Deposit successful."</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span>
+    <span class="s2">"paymentOperationId"</span><span class="o">:</span> <span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="o">:</span> <span class="s2">"50.88"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>deposit</td>
+</tr>
+<tr>
+<td>operationId</td>
+<td>Each payment operation id is unique. you can use this value on admin panel.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Detailed message of operation</td>
+</tr>
+<tr>
+<td>data.paymentId</td>
+<td>Unique payment ID</td>
+</tr>
+<tr>
+<td>data.paymentOperationId</td>
+<td>Operation ID of payment.</td>
+</tr>
+<tr>
+<td>data.amount</td>
+<td>Deposited amount.</td>
+</tr>
+</tbody></table>
+<h2 id='reverse'>Reverse</h2>
+<p>If the payment is not deposited, you can reverse the payment. </p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
+  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"reverse"</span><span class="p">,</span>
+  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Reverse successful."</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span>
+    <span class="s2">"paymentOperationId"</span><span class="o">:</span> <span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="o">:</span> <span class="s2">"50.88"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>reverse</td>
+</tr>
+<tr>
+<td>operationId</td>
+<td>Each reverse operation id is unique. you can use this value on admin panel.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Detailed message of operation</td>
+</tr>
+<tr>
+<td>data.paymentId</td>
+<td>Unique payment ID</td>
+</tr>
+<tr>
+<td>data.paymentOperationId</td>
+<td>Operation ID of payment.</td>
+</tr>
+<tr>
+<td>data.amount</td>
+<td>Deposited amount.</td>
+</tr>
+</tbody></table>
+<h2 id='refund'>Refund</h2>
+<p>If the payment is deposited, you can refund the payment.</p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
+  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"refund"</span><span class="p">,</span>
+  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4a34f-60c8-687a-a14d-d53acf3cde4e"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Refund successful."</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"paymentId"</span><span class="o">:</span> <span class="s2">"9e60d19a-62e0-4d6a-a482-922ff6f01933"</span><span class="p">,</span>
+    <span class="s2">"paymentOperationId"</span><span class="o">:</span> <span class="s2">"1ed4a34b-79a1-6fee-ad98-e794f89a217a"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="o">:</span> <span class="s2">"50.88"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>refund</td>
+</tr>
+<tr>
+<td>operationId</td>
+<td>Each refund operation id is unique. you can use this value on admin panel.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Detailed message of operation</td>
+</tr>
+<tr>
+<td>data.paymentId</td>
+<td>Unique payment ID</td>
+</tr>
+<tr>
+<td>data.paymentOperationId</td>
+<td>Operation ID of payment.</td>
+</tr>
+<tr>
+<td>data.amount</td>
+<td>Refunded amount.</td>
+</tr>
+</tbody></table>
+<h2 id='stored-card'>Stored Card</h2>
+<p>If you use stored card feature, you will receive the message as below</p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
+  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"stored_card"</span><span class="p">,</span>
+  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4ac06-eb95-6a6a-89fb-9b562db4a5db"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Card saved successful."</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"cardToken"</span><span class="o">:</span> <span class="s2">"sample token"</span><span class="p">,</span>
+    <span class="s2">"lastFourDigits"</span><span class="o">:</span> <span class="s2">"7499"</span><span class="p">,</span>
+    <span class="s2">"expirationMonth"</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">"expirationYear"</span><span class="o">:</span> <span class="mi">2023</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>stored_card</td>
+</tr>
+<tr>
+<td>operationId</td>
+<td>Each store card operation id is unique. you can use this value on admin panel.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Detailed message of operation</td>
+</tr>
+<tr>
+<td>data.cardToken</td>
+<td>you will receive the card token to use in payment requests.</td>
+</tr>
+<tr>
+<td>data.lastFourDigits</td>
+<td>card&#39;s last for digits</td>
+</tr>
+<tr>
+<td>data.expirationMonth</td>
+<td>card&#39;s expire month</td>
+</tr>
+<tr>
+<td>data.expirationYear</td>
+<td>card&#39;s expire year</td>
+</tr>
+</tbody></table>
+<h2 id='status-codes'>Status Codes</h2>
+<p>Webhook message status codes could be one of the below;</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SUCCESS</td>
+</tr>
+<tr>
+<td>TRANSACTION_DECLINED</td>
+</tr>
+<tr>
+<td>CANCELLED</td>
+</tr>
+<tr>
+<td>REQUEST_IN_PROGRESS</td>
+</tr>
+<tr>
+<td>COMPLETED_PARTIALLY</td>
+</tr>
+<tr>
+<td>EXPIRED</td>
+</tr>
+<tr>
+<td>INVALID_MERCHANT</td>
+</tr>
+<tr>
+<td>INVALID_INPUT</td>
+</tr>
+<tr>
+<td>INVALID_AMOUNT</td>
+</tr>
+<tr>
+<td>INVALID_CARD_NUMBER</td>
+</tr>
+<tr>
+<td>WRONG_CARD_EXPIRATION_DATE</td>
+</tr>
+<tr>
+<td>EXPIRED_CARD</td>
+</tr>
+<tr>
+<td>CVV_MISMATCH</td>
+</tr>
+<tr>
+<td>INCORRECT_PIN</td>
+</tr>
+<tr>
+<td>ALLOWABLE_NUMBER_OF_PIN_TRIES_EXCEEDED</td>
+</tr>
+<tr>
+<td>RESTRICTED_CARD</td>
+</tr>
+<tr>
+<td>INACTIVE_CARD</td>
+</tr>
+<tr>
+<td>INVALID_CARD</td>
+</tr>
+<tr>
+<td>INVALID_TRANSACTION</td>
+</tr>
+<tr>
+<td>TRANSACTION_COULD_NOT_BE_ROUTED</td>
+</tr>
+<tr>
+<td>TRANSACTION_LIMIT_EXCEEDED</td>
+</tr>
+<tr>
+<td>DUPLICATE_TRANSACTION</td>
+</tr>
+<tr>
+<td>REENTER_TRANSACTION</td>
+</tr>
+<tr>
+<td>INSUFFICIENT_FUNDS</td>
+</tr>
+<tr>
+<td>EXCEEDS_WITHDRAWAL_AMOUNT_LIMIT</td>
+</tr>
+<tr>
+<td>NO_ACTION_TAKEN</td>
+</tr>
+<tr>
+<td>ACTION_NOT_ALLOWED_FOR_PAYMENT</td>
+</tr>
+<tr>
+<td>ALREADY_REVERSED</td>
+</tr>
+<tr>
+<td>CARD_LOST_OR_STOLEN</td>
+</tr>
+<tr>
+<td>SUSPECTED_FRAUD</td>
+</tr>
+<tr>
+<td>ISSUER_DECLINED</td>
+</tr>
+<tr>
+<td>SYSTEM_ERROR</td>
+</tr>
+<tr>
+<td>DO_NOT_HONOR</td>
+</tr>
+<tr>
+<td>AUTHENTICATION_FAILED_3DS2</td>
+</tr>
+<tr>
+<td>UNHANDLED</td>
+</tr>
+</tbody></table>
 <h1 id='open-source'>Open Source</h1>
 <p>As Oderopay, we do support open source ecommerce and we created some extensions.</p>
 <h2 id='opencart'>Opencart</h2>
