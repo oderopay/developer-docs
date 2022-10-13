@@ -384,6 +384,9 @@
                     <a href="#stored-card" class="toc-h2 toc-link" data-title="Stored Card">Stored Card</a>
                   </li>
                   <li>
+                    <a href="#remove-card" class="toc-h2 toc-link" data-title="Remove Card">Remove Card</a>
+                  </li>
+                  <li>
                     <a href="#status-codes" class="toc-h2 toc-link" data-title="Status Codes">Status Codes</a>
                   </li>
               </ul>
@@ -1445,6 +1448,45 @@ So that, you need to add each merchant with products to payment object</p>
 <tr>
 <td>data.expirationYear</td>
 <td>card&#39;s expire year</td>
+</tr>
+</tbody></table>
+<h2 id='remove-card'>Remove Card</h2>
+<p>If you want to remove stored card, you will receive the message below</p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="p">{</span>
+  <span class="s2">"type"</span><span class="o">:</span> <span class="s2">"remove_stored_card"</span><span class="p">,</span>
+  <span class="s2">"operationId"</span><span class="o">:</span> <span class="s2">"1ed4ade7-c4a0-6d00-a09b-ed7e63f1aa16"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"SUCCESS"</span><span class="p">,</span>
+  <span class="s2">"message"</span><span class="o">:</span> <span class="s2">"Remove card successful."</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"storedCardToken"</span><span class="o">:</span> <span class="s2">"7fbe06bc344424724e79703d39382dcfb542bb83217e11c2a1f465ce07268983"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>remove_stored_card</td>
+</tr>
+<tr>
+<td>operationId</td>
+<td>Each store card operation id is unique. you can use this value on admin panel.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of operation</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Detailed message of operation</td>
+</tr>
+<tr>
+<td>data.storedCardToken</td>
+<td>you will receive the card token which has been removed</td>
 </tr>
 </tbody></table>
 <h2 id='status-codes'>Status Codes</h2>
