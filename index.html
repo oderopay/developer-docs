@@ -404,6 +404,9 @@
               </ul>
           </li>
           <li>
+            <a href="#test-cards" class="toc-h1 toc-link" data-title="Test Cards">Test Cards</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -1956,7 +1959,68 @@ If the extension is not enabled, payment options will not be activated on custom
 <h2 id='woocommerce'>Woocommerce</h2><div class="highlight"><pre class="highlight php tab-php"><code>
 </code></pre></div>
 <p>Documentation is waiting update.</p>
-<h3 id='installation-2'>Installation</h3><h1 id='errors'>Errors</h1>
+<h3 id='installation-2'>Installation</h3><h1 id='test-cards'>Test Cards</h1>
+<table><thead>
+<tr>
+<th>Card Number</th>
+<th>Date</th>
+<th>CVV</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4119881000346430</td>
+<td>04/23</td>
+<td>183</td>
+<td>SUCCESS - BT</td>
+</tr>
+<tr>
+<td>5299121004857499</td>
+<td>04/23</td>
+<td>881</td>
+<td>SUCCESS - BT</td>
+</tr>
+<tr>
+<td>4140496070360295</td>
+<td>07/24</td>
+<td>931</td>
+<td>SUCCESS - BT</td>
+</tr>
+<tr>
+<td>5299121033038343</td>
+<td>07/24</td>
+<td>100</td>
+<td>CVV MISMATCH - BT</td>
+</tr>
+<tr>
+<td>4012000300201199</td>
+<td>12/24</td>
+<td>111</td>
+<td>SUCCESS - SIBS</td>
+</tr>
+<tr>
+<td>4012000300201074</td>
+<td>12/24</td>
+<td>111</td>
+<td>INSUFFICIENT FUNDS - SIBS</td>
+</tr>
+<tr>
+<td>5413330300201293</td>
+<td>12/24</td>
+<td>111</td>
+<td>DO NOT HONOUR - SIBS</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+3DS Secure for Banca Transilvania codes are as below.
+</aside>
+
+<ul>
+<li>step 1. SMS code: 12345</li>
+<li>step 2. clients password: Parola123$</li>
+</ul>
+<h1 id='errors'>Errors</h1>
 <aside class="notice">
 You will face one of the error codes below if the request is not valid.
 </aside>
