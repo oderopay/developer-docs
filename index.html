@@ -729,7 +729,7 @@ MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-
 <p>This endpoint creates a payment request and returns the url of hosted payment page if success.
 You are an ecommerce company and selling your own products.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /api/payment/one-time</code></p>
+<p><code>POST /api/payments/one-time</code></p>
 <h3 id='body'>Body</h3>
 <table><thead>
 <tr>
@@ -759,7 +759,15 @@ You are an ecommerce company and selling your own products.</p>
 </tr>
 <tr>
 <td>extOrderUrl*</td>
-<td>Base64 encoded order URL.</td>
+<td>Base64 encoded order URL</td>
+</tr>
+<tr>
+<td>successUrl*</td>
+<td>Base64 encoded URL to return on success</td>
+</tr>
+<tr>
+<td>failUrl*</td>
+<td>Base64 encoded URL to return on fail</td>
 </tr>
 <tr>
 <td>returnUrl*</td>
@@ -881,6 +889,8 @@ You are an ecommerce company and selling your own products.</p>
     <span class="o">-&gt;</span><span class="nf">setExtOrderId</span><span class="p">(</span><span class="s1">'external-random-id'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setExtOrderUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/sample-product.html'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setReturnUrl</span><span class="p">(</span><span class="s1">'https://mystore.com'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setSuccessUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/order/123213?success'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setFailUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/order/123213?failed'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setMerchantId</span><span class="p">(</span><span class="s1">'{merchant-id}'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setCustomer</span><span class="p">(</span><span class="nv">$customer</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setMerchants</span><span class="p">(</span><span class="nv">$merchants</span><span class="p">)</span> <span class="c1">//add merchants data to payment</span>
@@ -894,6 +904,8 @@ You are an ecommerce company and selling your own products.</p>
   </span><span class="nl">"extOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"extOrderUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"returnUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"successUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"failUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"saveCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"recurring"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"submerchants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1251,7 +1263,7 @@ So that, you need to add each merchant with products to payment object</p>
 </code></pre></div>
 <p>This endpoint creates a payment request and returns the url of hosted payment page if success.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /api/payment/one-time</code></p>
+<p><code>POST /api/payments/one-time</code></p>
 <h3 id='body'>Body</h3>
 <table><thead>
 <tr>
