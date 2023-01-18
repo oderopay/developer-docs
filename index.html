@@ -1187,6 +1187,8 @@ So that, you need to add each merchant with products to payment object</p>
     <span class="o">-&gt;</span><span class="nf">setExtOrderId</span><span class="p">(</span><span class="s1">'external-random-id'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setExtOrderUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/orders/3244234'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setReturnUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/sample-product.html'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setSuccessUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/order/xxxx/?success=true'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setFailUrl</span><span class="p">(</span><span class="s1">'https://mystore.com/order/xxxx/payment_failed'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setCustomer</span><span class="p">(</span><span class="nv">$customer</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setProducts</span><span class="p">(</span><span class="nv">$products</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setSubscription</span><span class="p">(</span><span class="nv">$subscription</span><span class="p">)</span> <span class="c1">// 👈 set the subscription</span>
@@ -1210,6 +1212,8 @@ So that, you need to add each merchant with products to payment object</p>
   </span><span class="nl">"extOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"extOrderUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"returnUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"successUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"failUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"saveCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"recurring"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"recurringInformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
