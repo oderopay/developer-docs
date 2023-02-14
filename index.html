@@ -1976,10 +1976,80 @@ If the extension is not enabled, payment options will not be activated on custom
 </aside>
 <h3 id='webhooks'>Webhooks</h3>
 <p>After a successful installation, we generate url for webhooks. Copy the generated url from Opencart Oderopay extension page and paste to settings under Odero Merchant Admin</p>
-<h2 id='woocommerce'>Woocommerce</h2><div class="highlight"><pre class="highlight php tab-php"><code>
-</code></pre></div>
-<p>Documentation is waiting update.</p>
-<h3 id='installation-2'>Installation</h3><h1 id='test-cards'>Test Cards</h1>
+<h2 id='woocommerce'>Woocommerce</h2>
+<ul>
+<li>Download the latest version of extension (zip) from <a href="https://github.com/oderopay/odero-woocommerce/releases/latest">Github</a>.</li>
+<li>Go to Wordpress Admin &gt; Plugins &gt; Add New</li>
+<li>Click Upload Plugin on top</li>
+<li>Select the downloaded zip file and click Install Now button</li>
+</ul>
+<h3 id='configuration-2'>Configuration</h3>
+<p>For Woocommerce settings please go to <code>WooCommerce &gt; Settings &gt; Payments</code> and enable OderoPay</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Enable/Disable</td>
+<td>If yes, customers will see the option for Oderopay on checkout page.</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>This is the title for customers to see on checkout page.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>This is the title for customers to see on checkout page.</td>
+</tr>
+<tr>
+<td>Merchant ID</td>
+<td>You Odero MerchantID, you can access this from Odero Merchant Admin</td>
+</tr>
+<tr>
+<td>Merchant Token</td>
+<td>You Odero Token, you can access this from Odero Merchant Admin</td>
+</tr>
+<tr>
+<td>Sandbox Mode</td>
+<td>For development purpose to use Odero staging environment</td>
+</tr>
+<tr>
+<td>Merchant ID</td>
+<td>You Odero MerchantID, you can access this from Odero Merchant Admin (STG)</td>
+</tr>
+<tr>
+<td>Merchant Token</td>
+<td>You Odero Token, you can access this from Odero Merchant Admin (STG)</td>
+</tr>
+<tr>
+<td>Order Status</td>
+<td>You should set order statuses during the payment for your custom checkout flow</td>
+</tr>
+<tr>
+<td>Status On Process</td>
+<td>This status is set when customer is redirected to Odero Payment Page (default <code>on-hold</code>)</td>
+</tr>
+<tr>
+<td>On Payment Failed</td>
+<td>This status is set when payment is failed (default <code>failed</code>)</td>
+</tr>
+<tr>
+<td>On Payment Success</td>
+<td>This status is set when payment is success. (default <code>processing</code>)</td>
+</tr>
+<tr>
+<td>Secret Key</td>
+<td>A random pasphrase to secure webhook endpoint for IPN</td>
+</tr>
+<tr>
+<td>Enable Logging</td>
+<td>Enable loging for debugging, you can access to logs on <code>WooCommerce &gt; Status &gt; Logs</code></td>
+</tr>
+</tbody></table>
+<h1 id='test-cards'>Test Cards</h1>
 <table><thead>
 <tr>
 <th>Card Number</th>
