@@ -339,7 +339,10 @@
             <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-payment" class="toc-h2 toc-link" data-title="Create Payment">Create Payment</a>
+                    <a href="#create-payment-request" class="toc-h2 toc-link" data-title="Create Payment Request">Create Payment Request</a>
+                  </li>
+                  <li>
+                    <a href="#create-payment-link" class="toc-h2 toc-link" data-title="Create Payment Link">Create Payment Link</a>
                   </li>
                   <li>
                     <a href="#get-payment" class="toc-h2 toc-link" data-title="Get Payment">Get Payment</a>
@@ -610,7 +613,7 @@ MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-
 <p>This endpoint deletes a saved card.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>DELETE /api/cards/{cardToken}</code></p>
-<h1 id='payments'>Payments</h1><h2 id='create-payment'>Create Payment</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$billingAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Address\BillingAddress</span><span class="p">();</span>
+<h1 id='payments'>Payments</h1><h2 id='create-payment-request'>Create Payment Request</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$billingAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Address\BillingAddress</span><span class="p">();</span>
 <span class="nv">$billingAddress</span>
     <span class="o">-&gt;</span><span class="nf">setAddress</span><span class="p">(</span><span class="s1">'185 Berry St #550, San Francisco, CA 94107, USA'</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="nf">setCity</span><span class="p">(</span><span class="s1">'San Francisco'</span><span class="p">)</span>
@@ -826,6 +829,79 @@ You are an ecommerce company and selling your own products.</p>
 <aside class="warning">
 (*) required.
 </aside>
+<h2 id='create-payment-link'>Create Payment Link</h2><div class="highlight"><pre class="highlight php tab-php"><code>
+<span class="nv">$paymentRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">Oderopay\Model\Payment\PaymentLink</span><span class="p">();</span>
+<span class="nv">$paymentRequest</span>
+    <span class="o">-&gt;</span><span class="nf">setItemDescription</span><span class="p">(</span><span class="s1">'Sample Product'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setCurrency</span><span class="p">(</span><span class="s1">'RON'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setAmount</span><span class="p">(</span><span class="mf">5.20</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="nf">setExpireAt</span><span class="p">((</span><span class="k">new</span> <span class="nc">DateTime</span><span class="p">())</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="k">new</span> <span class="nc">DateInterval</span><span class="p">(</span><span class="s2">"P1Y"</span><span class="p">)))</span>
+<span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$payment</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">payments</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">(</span><span class="nv">$paymentRequest</span><span class="p">);</span> <span class="c1">//PaymentIntentResponse</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$payment</span><span class="p">);</span>
+<span class="p">}</span><span class="k">catch</span> <span class="p">(</span><span class="err">\</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">){</span>
+    <span class="k">echo</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">();</span>
+<span class="p">}</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"merchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expireAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"itemDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns an object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "operationId": "uuid",
+  "message": "string",
+  "data": {
+    "paymentId": "uuid",
+    "url": "string",
+    "qr" : "string"
+  }
+}
+</code></pre></div>
+<p>This endpoint creates a payment link request and returns the url of hosted payment page if success.
+Qr is the url of QrCode that could be used directly as image. </p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /api/payments/link</code></p>
+<h3 id='body-2'>Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId*</td>
+<td>Your unique merchant ID.</td>
+</tr>
+<tr>
+<td>amount*</td>
+<td>Payment amount.</td>
+</tr>
+<tr>
+<td>currency*</td>
+<td>Currency code (3 letters).</td>
+</tr>
+<tr>
+<td>itemDescription*</td>
+<td>Product or Service name</td>
+</tr>
+<tr>
+<td>expireAt*</td>
+<td>Expiration date of the link</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+(*) required.
+</aside>
 <h2 id='get-payment'>Get Payment</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$payment</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">payments</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'payment-id'</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
@@ -841,7 +917,7 @@ You are an ecommerce company and selling your own products.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>To get a single payment object, you can call this endpoint.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/payments/{id}</code></p>
 <h2 id='marketplace'>Marketplace</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$customer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Customer</span><span class="p">();</span>
 <span class="mf">....</span> 
@@ -961,7 +1037,7 @@ You are an ecommerce company and selling your own products.</p>
 </code></pre></div>
 <p>Lets assume you have multiple sub merchants. And your customer has multiple items from different submerchants in their basket.
 So that, you need to add each merchant with products to payment object</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /api/payments/one-time</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1157,7 +1233,7 @@ So that, you need to add each merchant with products to payment object</p>
 }
 </code></pre></div>
 <p>If you want to make the payment with a saved card, you need to add <code>cardToken</code> parameter to payment object.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /api/payments/one-time</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
