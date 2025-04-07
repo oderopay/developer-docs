@@ -407,6 +407,17 @@
               </ul>
           </li>
           <li>
+            <a href="#in-app" class="toc-h1 toc-link" data-title="In App">In App</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#webjs-sdk" class="toc-h2 toc-link" data-title="WebJS SDK">WebJS SDK</a>
+                  </li>
+                  <li>
+                    <a href="#mobile-sdk" class="toc-h2 toc-link" data-title="Mobile SDK">Mobile SDK</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#test-cards" class="toc-h1 toc-link" data-title="Test Cards">Test Cards</a>
           </li>
           <li>
@@ -678,6 +689,7 @@ MERCHANT-ID + | + sha256(MERCHANT-ID + PAYLOADED_ENCODED_AS_JSON + MERCHANT-API-
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"merchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"extOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"extOrderUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -755,6 +767,10 @@ You are an ecommerce company and selling your own products.</p>
 <tr>
 <td>amount*</td>
 <td>Payment amount.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Payment descriotion, will be displayed on slip. (max 80 characters)</td>
 </tr>
 <tr>
 <td>currency*</td>
@@ -1057,6 +1073,10 @@ So that, you need to add each merchant with products to payment object</p>
 <tr>
 <td>amount*</td>
 <td>Payment amount.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Payment descriotion, will be displayed on slip. (max 80 characters)</td>
 </tr>
 <tr>
 <td>currency*</td>
@@ -2130,6 +2150,16 @@ If the extension is not enabled, payment options will not be activated on custom
 <td>Enable loging for debugging, you can access to logs on <code>WooCommerce &gt; Status &gt; Logs</code></td>
 </tr>
 </tbody></table>
+<h1 id='in-app'>In App</h1>
+<aside class="notice">
+You will face one of the error codes below if the request is not valid.
+</aside>
+<h3 id='webjs-sdk'>WebJS SDK</h3>
+<p>WebJS SDK docs will be here</p>
+<div class="highlight"><pre class="highlight javascript"><code>
+<span class="kd">const</span> <span class="nx">odero</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OderoPay</span><span class="p">(</span><span class="dl">'</span><span class="s1">sessionId</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div><h3 id='mobile-sdk'>Mobile SDK</h3>
+<p>WebJS SDK docs will be here</p>
 <h1 id='test-cards'>Test Cards</h1>
 <table><thead>
 <tr>
