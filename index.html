@@ -353,6 +353,12 @@
                   <li>
                     <a href="#pay-with-saved-card" class="toc-h2 toc-link" data-title="Pay With Saved Card">Pay With Saved Card</a>
                   </li>
+                  <li>
+                    <a href="#deposit-the-authorized-transaction" class="toc-h2 toc-link" data-title="Deposit the Authorized Transaction">Deposit the Authorized Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#reverse-the-authorized-transaction" class="toc-h2 toc-link" data-title="Reverse the Authorized Transaction">Reverse the Authorized Transaction</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -403,17 +409,6 @@
                   </li>
                   <li>
                     <a href="#woocommerce" class="toc-h2 toc-link" data-title="Woocommerce">Woocommerce</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#in-app" class="toc-h1 toc-link" data-title="In App">In App</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#webjs-sdk" class="toc-h2 toc-link" data-title="WebJS SDK">WebJS SDK</a>
-                  </li>
-                  <li>
-                    <a href="#mobile-sdk" class="toc-h2 toc-link" data-title="Mobile SDK">Mobile SDK</a>
                   </li>
               </ul>
           </li>
@@ -1271,6 +1266,111 @@ So that, you need to add each merchant with products to payment object</p>
 <td>Stored card token.</td>
 </tr>
 </tbody></table>
+<h2 id='deposit-the-authorized-transaction'>Deposit the Authorized Transaction</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"merchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"submerchants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"extId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"commission"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "operationId": "uuid",
+  "message": "string"
+}
+</code></pre></div>
+<p>If collection type is set as &quot;two steps&quot; under your merchant settings, then you can use this endpoint to deposit the amount to merchant accounts. 
+The amount should be less than or equal to the total amount of payment.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /api/deposits</code></p>
+<h3 id='body-params'>Body Params</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId</td>
+<td>uuid</td>
+<td>Merchant identifier</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>uuid</td>
+<td>Payment identifier</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>Total amount</td>
+</tr>
+<tr>
+<td>submerchants.*.extId</td>
+<td>uuid</td>
+<td>External ID</td>
+</tr>
+<tr>
+<td>submerchants.*.name</td>
+<td>string</td>
+<td>Submerchant name</td>
+</tr>
+<tr>
+<td>submerchants.*.amount</td>
+<td>float</td>
+<td>Submerchant&#39;s amount</td>
+</tr>
+<tr>
+<td>submerchants.*.commission</td>
+<td>float</td>
+<td>Submerchant&#39;s commission</td>
+</tr>
+</tbody></table>
+<h2 id='reverse-the-authorized-transaction'>Reverse the Authorized Transaction</h2>
+<p>If collection type is set as &quot;two steps&quot; under your merchant settings, then you can use this endpoint to reverse the authorized transaction.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"merchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "operationId": "uuid",
+  "message": "string"
+}
+</code></pre></div><h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /api/reverses</code></p>
+<h3 id='body-params-2'>Body Params</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId</td>
+<td>uuid</td>
+<td>Merchant identifier</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>uuid</td>
+<td>Payment identifier</td>
+</tr>
+</tbody></table>
 <h1 id='subscriptions'>Subscriptions</h1><h2 id='create-subscription'>Create Subscription</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="c1">//subscription</span>
 <span class="nv">$startDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DateTime</span><span class="p">();</span>
 <span class="nv">$endDate</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$startDate</span><span class="p">;</span> <span class="nv">$endDate</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="nc">DateInterval</span><span class="o">::</span><span class="nf">createFromDateString</span><span class="p">(</span><span class="s1">'1 years'</span><span class="p">));</span>
@@ -1504,9 +1604,9 @@ So that, you need to add each merchant with products to payment object</p>
   }
 }
 </code></pre></div>
-<p>YOu might want to cancel the subscription. To do so, you can call cancel endpoint.</p>
+<p>You might want to cancel the subscription. To do so, you can call cancel endpoint.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /api/payments/{id}/recurring/retry</code></p>
+<p><code>POST /api/payments/{id}/recurring/cancel</code></p>
 <h1 id='webhooks'>Webhooks</h1><div class="highlight"><pre class="highlight php tab-php"><code><span class="nv">$payload</span> <span class="o">=</span> <span class="o">@</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span> <span class="c1">// or $_REQUEST</span>
 <span class="nv">$message</span> <span class="o">=</span> <span class="nv">$oderopay</span><span class="o">-&gt;</span><span class="n">webhooks</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$payload</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
 
@@ -2154,16 +2254,6 @@ If the extension is not enabled, payment options will not be activated on custom
 <td>Enable loging for debugging, you can access to logs on <code>WooCommerce &gt; Status &gt; Logs</code></td>
 </tr>
 </tbody></table>
-<h1 id='in-app'>In App</h1>
-<aside class="notice">
-You will face one of the error codes below if the request is not valid.
-</aside>
-<h3 id='webjs-sdk'>WebJS SDK</h3>
-<p>WebJS SDK docs will be here</p>
-<div class="highlight"><pre class="highlight javascript"><code>
-<span class="kd">const</span> <span class="nx">odero</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OderoPay</span><span class="p">(</span><span class="dl">'</span><span class="s1">sessionId</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div><h3 id='mobile-sdk'>Mobile SDK</h3>
-<p>WebJS SDK docs will be here</p>
 <h1 id='test-cards'>Test Cards</h1>
 <table><thead>
 <tr>
@@ -2174,46 +2264,10 @@ You will face one of the error codes below if the request is not valid.
 </tr>
 </thead><tbody>
 <tr>
-<td>5299121033038343</td>
-<td>07/24</td>
-<td>742</td>
-<td>SUCCESS - BT</td>
-</tr>
-<tr>
-<td>5299121032998810</td>
-<td>07/24</td>
-<td>081</td>
-<td>SUCCESS - BT</td>
-</tr>
-<tr>
-<td>4140496070360295</td>
-<td>07/24</td>
-<td>931</td>
-<td>SUCCESS - BT</td>
-</tr>
-<tr>
-<td>5299121033038343</td>
-<td>07/24</td>
-<td>100</td>
-<td>CVV MISMATCH - BT</td>
-</tr>
-<tr>
-<td>4012000300201199</td>
-<td>12/24</td>
-<td>111</td>
-<td>SUCCESS - SIBS</td>
-</tr>
-<tr>
-<td>4012000300201074</td>
-<td>12/24</td>
-<td>111</td>
-<td>INSUFFICIENT FUNDS - SIBS</td>
-</tr>
-<tr>
-<td>5413330300201293</td>
-<td>12/24</td>
-<td>111</td>
-<td>DO NOT HONOUR - SIBS</td>
+<td>5299121035338204</td>
+<td>05/26</td>
+<td>063</td>
+<td>SUCCESS</td>
 </tr>
 </tbody></table>
 
