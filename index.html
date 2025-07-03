@@ -359,6 +359,12 @@
                   <li>
                     <a href="#reverse-the-authorized-transaction" class="toc-h2 toc-link" data-title="Reverse the Authorized Transaction">Reverse the Authorized Transaction</a>
                   </li>
+                  <li>
+                    <a href="#refund-deposited-transaction" class="toc-h2 toc-link" data-title="Refund Deposited Transaction">Refund Deposited Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#refund-deposited-transaction-2" class="toc-h2 toc-link" data-title="Refund Deposited Transaction">Refund Deposited Transaction</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1369,6 +1375,81 @@ The amount should be less than or equal to the total amount of payment.</p>
 <td>paymentId</td>
 <td>uuid</td>
 <td>Payment identifier</td>
+</tr>
+</tbody></table>
+<h2 id='refund-deposited-transaction'>Refund Deposited Transaction</h2><h2 id='refund-deposited-transaction-2'>Refund Deposited Transaction</h2>
+<p>Refund a previously deposited transaction. This transaction must have been completed with a payment type of &quot;success&quot;. The amount of the refund cannot be greater than the original amount of the transaction.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"merchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"paymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"referenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"submerchants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"extId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"commission"</span><span class="p">:</span><span class="w"> </span><span class="s2">"float"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns object like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "operationId": "uuid",
+  "message": "string"
+}
+</code></pre></div><h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST /api/refunds</code></p>
+<h3 id='body-params-3'>Body Params</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchantId</td>
+<td>uuid</td>
+<td>Merchant identifier</td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>uuid</td>
+<td>Payment identifier</td>
+</tr>
+<tr>
+<td>referenceId</td>
+<td>string</td>
+<td>reference identifier</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>Refund amount</td>
+</tr>
+<tr>
+<td>submerchants[n].extId*</td>
+<td>Submerchant ID (from Odero PSP).</td>
+<td></td>
+</tr>
+<tr>
+<td>submerchants[n].name*</td>
+<td>Submerchant Name (from Odero PSP).</td>
+<td></td>
+</tr>
+<tr>
+<td>submerchants[n].amount*</td>
+<td>Amount to deposit</td>
+<td></td>
+</tr>
+<tr>
+<td>submerchants[n].commission*</td>
+<td>Submerchant commission.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h1 id='subscriptions'>Subscriptions</h1><h2 id='create-subscription'>Create Subscription</h2><div class="highlight"><pre class="highlight php tab-php"><code><span class="c1">//subscription</span>
